@@ -1,0 +1,559 @@
+/* --- 1. SETTING DASAR --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+    --primary-blue: #0d47a1;
+    --secondary-blue: #1976d2;
+    --accent-blue: #42a5f5;
+    --background-light: #f1f8fe;
+    --white: #ffffff;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --hover-shadow: rgba(0, 0, 0, 0.2);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--background-light);
+    margin: 0;
+    color: var(--primary-blue);
+    line-height: 1.6;
+}
+
+/* --- 2. NAVIGATION BAR --- */
+/* --- 2. NAVIGATION BAR --- */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    /* MENAMBAHKAN BACKGROUND GAMBAR KHUSUS NAVBAR */
+    background-image: linear-gradient(135deg, rgba(13, 71, 161, 0.8), rgba(25, 118, 210, 0.8)), 
+                      url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ88VYROp8G5mFK0Z-Ha4y35RcFp0xAW4k8Q&s');
+    background-size: cover;
+    background-position: center -70%;
+    
+    padding: 15px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px var(--card-shadow);
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 55px; /* Anda bisa menaikkan ukurannya, misal dari 45px ke 55px */
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
+    transition: transform 0.3s;
+}
+
+.logo:hover {
+    transform: scale(1.05); /* Memberikan efek sedikit membesar saat kursor di atas logo */
+}
+
+.brand {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    margin-left: 12px;
+    letter-spacing: 1px;
+}
+
+.nav-center-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--accent-blue);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.login {
+    background-color: var(--accent-blue);
+    padding: 8px 20px;
+    border-radius: 20px;
+}
+
+/* --- 3. KERANJANG & MODAL --- */
+.cart-icon-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    position: relative;
+}
+
+#cartCount {
+    background: #ff5252;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    right: -10px;
+}
+
+/* Pastikan kontainer modal bisa discroll jika kontennya panjang */
+.cart-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    overflow-y: auto; /* Izinkan scroll pada seluruh area modal */
+    padding: 20px 0;
+}
+
+/* Pastikan konten di dalam modal tidak terlalu mepet ke bawah layar */
+.cart-content {
+    background: white;
+    margin: 20px auto; /* Memberi jarak atas dan bawah agar tidak mentok */
+    padding: 30px;
+    width: 90%;
+    max-width: 480px;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+}
+
+/* Optimasi Grid Jam agar pas di dalam modal */
+.time-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Gunakan 2 kolom agar teks jam lebih terbaca dan hemat ruang vertikal */
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.close-cart {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #999;
+}
+
+#cartItems {
+    max-height: 250px;
+    overflow-y: auto;
+    margin: 20px 0;
+    padding-right: 5px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 800;
+    padding-top: 15px;
+    margin-bottom: 15px;
+    border-top: 2px solid #eee;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 50px;
+    background: #27ae60;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.checkout-btn:hover {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+}
+
+/* --- 4. LIST LAPANGAN & CARDS --- */
+h1 {
+    text-align: center;
+    font-family: 'Montserrat';
+    margin-top: 50px;
+    font-size: 36px;
+}
+
+.subtitle {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--secondary-blue);
+}
+
+.filter-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+.filter-controls input, 
+.filter-controls select {
+    padding: 12px 15px;
+    border: 2px solid #cbdcf0;
+    border-radius: 12px;
+    font-size: 16px;
+    width: 250px;
+}
+
+.field-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px 50px 80px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px var(--card-shadow);
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px var(--hover-shadow);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 25px;
+}
+
+.card-content h3 {
+    margin: 0 0 5px 0;
+    font-family: 'Montserrat';
+}
+
+.price {
+    font-weight: 800;
+    font-size: 18px;
+    margin: 15px 0;
+}
+
+.card-content button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(90deg, var(--secondary-blue), var(--accent-blue));
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* --- 5. FOOTER --- */
+footer {
+    background: linear-gradient(rgba(13, 71, 161, 0.9), rgba(13, 71, 161, 0.9)), 
+                url('https://www.thesun.co.uk/wp-content/uploads/2023/02/manchester-citys-erling-haaland-celebrates-818994312.jpg?strip=all&w=960');
+    background-size: cover;
+    background-position: center 40%;
+    color: white;
+    padding: 60px 40px 20px;
+    margin-top: 50px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    text-align: justify;
+    
+}
+
+.social-links-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-link {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.social-link img {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+/* --- 6. ANIMASI & RESPONSIVE --- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .nav-center-links { display: none; }
+    .filter-controls { flex-direction: column; align-items: center; }
+    .filter-controls input, .filter-controls select { width: 100%; }
+    .field-container { padding: 20px; }
+    .navbar { padding: 15px 20px; }
+}  
+
+/* --- PERBAIKAN IKON SOSIAL MEDIA --- */
+.social-links-container {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Jarak antar ikon */
+    margin-top: 15px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Jarak antara gambar ikon dan teks */
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: var(--accent-blue);
+}
+
+.social-link img {
+    width: 24px;  /* Ukuran ikon yang pas */
+    height: 24px;
+    border-radius: 4px; /* Sudut sedikit membulat agar halus */
+    object-fit: cover;
+    background-color: white; /* Memberi latar belakang putih jika logo transparan */
+    padding: 2px; /* Ruang napas di dalam ikon */
+}
+
+.separator {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.auth-input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #cbdcf0;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+#authContent h2 {
+    font-family: 'Montserrat';
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+}
+
+
+/* Scrollbar untuk grid jam */
+.time-grid::-webkit-scrollbar {
+    width: 6px;
+}
+.time-grid::-webkit-scrollbar-thumb {
+    background: var(--accent-blue);
+    border-radius: 10px;
+}
+
+/* Warna saat jam dipilih (Klik pertama) */
+.time-slot-btn.selected {
+    background: #28a745 !important; /* Hijau sukses */
+    border-color: #1e7e34 !important;
+    color: white !important;
+    font-weight: bold;
+}
+
+/* Warna standar (Saat belum dipilih atau setelah di-unselect) */
+.time-slot-btn {
+    background: white;
+    border: 2px solid var(--accent-blue);
+    color: var(--primary-blue);
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.time-slot-btn:hover {
+    background: #f0f7ff;
+    transform: scale(1.02);
+}   
+
+.item-time {
+    font-size: 13px;
+    color: #1976d2;
+    background: #e3f2fd;
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+/* Mengecilkan ukuran teks deskripsi di footer agar kontras dengan judul */
+.footer-section h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.footer-section p {
+    font-size: 14px; /* Lebih kecil dari judul */
+    line-height: 1.6;
+    opacity: 0.8;
+}
+
+/* Memastikan modal reservasi bisa di-scroll secara mandiri */
+#authModal {
+    overflow-y: auto;
+    padding: 40px 0; /* Memberi ruang agar tombol 'Selesai' tidak terpotong layar */
+}
+
+#authModal .cart-content {
+    max-height: none; /* Membiarkan konten memanjang dan memicu scroll pada modal parent */
+    margin-bottom: 40px;
+}
+
+/* --- PERBAIKAN BACKGROUND FULL HALAMAN --- */
+/* --- PERBAIKAN BACKGROUND MENGIKUTI SCROLL --- */
+main {
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('https://www.thesun.co.uk/wp-content/uploads/2025/11/erling-haaland-manchester-city-celebrates-1035676864.jpg?w=640');
+    background-size: cover;
+    background-position: center;
+    /* UBAH 'fixed' MENJADI 'scroll' AGAR IKUT TERGESER */
+    background-attachment: scroll; 
+    position: relative;
+    padding-bottom: 50px;
+}
+
+/* Pastikan overlay tetap menutupi seluruh area main */
+main::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8); /* Lapisan putih agar teks kartu tetap jelas */
+    z-index: 0;
+}
+
+/* Pastikan semua konten di dalam main berada di atas overlay */
+.hero-section, .filter-controls, .field-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Hapus background-image pada hero-section agar tidak dobel */
+.hero-section {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none; /* Menghilangkan background hero karena sudah ada di main */
+}
+
+.hero-overlay {
+    background: none; /* Menghilangkan overlay gelap hero agar tidak terlalu gelap */
+    text-align: center;
+}
+
+.hero-overlay h1 {
+    color: var(--primary-blue); /* Mengubah teks jadi biru agar kontras dengan latar terang */
+    font-size: 42px;
+    text-shadow: none;
+}
+
+
+.hero-subtitle {
+    color: #f1f8fe;
+    font-size: 18px;
+    margin: 10px 0 25px 0;
+}
+
+.cta-button {
+    background: #27ae60;
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    background: #2ecc71;
+}

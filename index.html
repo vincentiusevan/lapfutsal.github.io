@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Fields Futsal Jakarta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
+            <h2>Keranjang Sewa</h2>
+            
+            <div id="cartItems">
+                <p>Keranjang masih kosong...</p>
+            </div>
+
+            <p id="loginNotice" style="color: red; font-size: 12px; text-align: center; display: none;">
+    *Silakan login untuk memunculkan QRIS
+</p>
+            
+            <div id="qrisSection" style="display:none; text-align:center; margin: 20px 0; border-top: 2px dashed #ddd; padding-top: 20px;">
+                <p style="font-weight: bold;">Scan QRIS untuk Pembayaran:</p>
+                <img src="images/qris-code.png" alt="QRIS Pembayaran" style="width:220px; height:auto; margin: 10px 0; border: 1px solid #eee; padding: 10px;">
+                <p style="font-size: 13px; color: #666;">Harap simpan bukti transfer untuk verifikasi saat kedatangan.</p>
+            </div>
+
+            <div class="cart-total">
+                <span>Total Biaya:</span>
+                <strong>Rp <span id="totalPrice">0</span></strong>
+            </div>
+            
+            <button id="mainCheckoutBtn" class="checkout-btn" onclick="prosesPembayaran()">Bayar Sekarang (QRIS)</button>
+        </div>
+    </div>
+
+    <div id="authModal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close-cart" onclick="toggleAuth()">&times;</span>
+            <div id="authContent">
+                </div>
+        </div>
+    </div>
+
+    <header class="navbar">
+        <div class="nav-left">
+            <img src="images/logo_sport-removebg-preview.png" alt="Logo Futsal" class="logo">
+        </div>
+
+        <div class="nav-center-links">
+            <a href="#booking-section" class="nav-link">Sewa Lapangan</a>
+            <a href="#" class="nav-link" onclick="alert('Jadwal Main segera hadir!')">Jadwal Main</a>
+            <a href="#about-us" class="nav-link">Tentang Kami</a>
+        </div>
+
+        <div class="nav-right">
+            <button id="cartBtn" class="cart-icon-btn" onclick="toggleCart()">
+                🛒 <span id="cartCount">0</span>
+            </button>
+            <a href="#" class="nav-link" onclick="toggleAuth('daftar')">Daftar</a>
+            <a href="#" class="nav-link login" onclick="toggleAuth('login')">Login</a>
+        </div>
+    </header>
+
+<main>
+    <section class="hero-section">
+        <div class="hero-overlay">
+            <h1>BLUE FIELDS FUTSAL JAKARTA</h1>
+            <p class="subtitle">Platform penyewaan lapangan futsal terpercaya di Jakarta</p>
+            <a href="#booking-section" class="cta-button">Booking Sekarang</a>
+        </div>
+    </section>
+
+    <div id="booking-section" class="filter-controls">
+        <input type="text" id="searchInput" placeholder="Cari nama lapangan...">
+        <select id="areaFilter">
+            <option value="all">Semua Area</option>
+            <option value="Jakarta Barat">Jakarta Barat</option>
+            <option value="Jakarta Selatan">Jakarta Selatan</option>
+            <option value="Jakarta Timur">Jakarta Timur</option>
+            <option value="Jakarta Utara">Jakarta Utara</option>
+            <option value="Jakarta Pusat">Jakarta Pusat</option>
+        </select>
+    </div>
+
+    <div id="fieldList" class="field-container"></div>
+</main>
+
+    <footer id="about-us">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Tentang Blue Fields</h3>
+                <p>Blue Fields lahir dari kecintaan kami pada dunia futsal dan kebutuhan akan akses lapangan yang mudah, berkualitas, dan terjangkau di Jakarta. Kami bukan sekadar platform pemesanan; kami adalah jembatan bagi komunitas bola untuk bertemu, berkompetisi, dan menyalurkan hobi tanpa kendala birokrasi. Dengan teknologi reservasi real-time, kami memastikan setiap menit waktu main Anda berharga.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Kontak Kami</h3>
+                <p>
+                    <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Blue%20Fields" 
+                       target="_blank" style="color: #42a5f5; text-decoration: none; font-weight: bold;">
+                       WhatsApp: +62 812-3456-7890
+                    </a>
+                </p>
+                <p>Alamat: Jakarta, Indonesia</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Ikuti Kami</h3>
+                <div class="social-links-container">
+                    <a href="#" class="social-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" alt="IG"> Instagram
+                    </a>
+                    <span class="separator">|</span>
+                    <a href="#" class="social-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_2023.png/600px-Facebook_Logo_2023.png" alt="FB"> Facebook
+                    </a>
+                    <span class="separator">|</span>
+                    <a href="#" class="social-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/X_logo_2023.svg/600px-X_logo_2023.svg.png" alt="X"> X
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Blue Fields Futsal Jakarta. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script> 
+</body>
+</html>
